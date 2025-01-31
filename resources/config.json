@@ -1,0 +1,162 @@
+{
+  "sounds": {
+    "C1": [
+      "k",
+      "g",
+      "s",
+      "z",
+      "t",
+      "d",
+      "n",
+      "f",
+      "v",
+      "p",
+      "m",
+      "l",
+      "r",
+      "w"
+    ],
+    "C_START": [
+      "gz",
+      "gd",
+      "gn",
+      "sk",
+      "sg",
+      "st",
+      "sn",
+      "sp",
+      "sf",
+      "sr",
+      "zn",
+      "zr",
+      "tw",
+      "dw",
+      "vr",
+      "pk",
+      "pt",
+      "pd",
+      "pf",
+      "fr",
+      "fw"
+    ],
+    "C_INTER": [
+      "gz",
+      "gd",
+      "gn",
+      "sk",
+      "sg",
+      "st",
+      "sn",
+      "sp",
+      "sf",
+      "sr",
+      "zn",
+      "zr",
+      "tw",
+      "dw",
+      "vr",
+      "pk",
+      "pt",
+      "pd",
+      "pf",
+      "ml",
+      "lm",
+      "ln",
+      "fr",
+      "fw"
+    ],
+    "CC": [
+      "gz",
+      "gd",
+      "gn",
+      "sk",
+      "sg",
+      "st",
+      "sn",
+      "sp",
+      "sf",
+      "sr",
+      "zn",
+      "zr",
+      "tv",
+      "tw",
+      "dw",
+      "vr",
+      "pk",
+      "pt",
+      "pd",
+      "pf",
+      "ml",
+      "lm",
+      "ln",
+      "fr",
+      "fw"
+    ],
+    "C_NO_DIACRITICS": [
+      "k",
+      "s",
+      "t",
+      "n",
+      "f",
+      "m",
+      "l",
+      "r",
+      "w",
+      "sk",
+      "st",
+      "sn",
+      "sp",
+      "sf",
+      "sr",
+      "pk",
+      "pt",
+      "pf",
+      "fr"
+    ],
+    "V": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "$": [
+      "a",
+      "an"
+    ]
+  },
+  "patterns": [
+    {
+      "syllable": [
+        "C_START",
+        "V",
+        "C_INTER",
+        "$"
+      ]
+    },
+    {
+      "syllable": [
+        "C1",
+        "V",
+        "C1",
+        "$"
+      ]
+    },
+    {
+      "syllable": [
+        "V",
+        "CC",
+        "$"
+      ]
+    },
+    {
+      "label": "濁音を含まない語彙",
+      "syllable": [
+        "C_NO_DIACRITICS",
+        "V",
+        "C_NO_DIACRITICS",
+        "$"
+      ]
+    }
+  ]
+}

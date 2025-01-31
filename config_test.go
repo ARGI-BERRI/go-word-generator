@@ -23,7 +23,7 @@ func Test_loadConfig(t *testing.T) {
 			json: `{"sounds": {"dummy": ["a"]}, "patterns": []}`,
 			want: Config{
 				Sounds: map[string][]string{
-					"dummy": []string{"a"},
+					"dummy": {"a"},
 				},
 				Pattern: make([]Pattern, 0),
 			},

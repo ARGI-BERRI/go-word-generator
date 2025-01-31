@@ -44,27 +44,22 @@ func Test_choiceSound(t *testing.T) {
 }
 
 func Test_generateWords(t *testing.T) {
-	type args struct {
-		config Config
-	}
 	tests := []struct {
-		name string
-		args args
-		want []string
+		name   string
+		config Config
+		want   []string
 	}{
 		{
 			name: "both syllables and sounds are defined",
-			args: args{
-				config: Config{
-					Sounds: map[string][]string{
-						"C": {"a", "c"},
-						"V": {"b", "d"},
-					},
-					Pattern: []Pattern{
-						{
-							Syllable: []string{
-								"C", "V",
-							},
+			config: Config{
+				Sounds: map[string][]string{
+					"C": {"a", "c"},
+					"V": {"b", "d"},
+				},
+				Pattern: []Pattern{
+					{
+						Syllable: []string{
+							"C", "V",
 						},
 					},
 				},
@@ -73,29 +68,25 @@ func Test_generateWords(t *testing.T) {
 		},
 		{
 			name: "patterns are not defined",
-			args: args{
-				config: Config{
-					Sounds: map[string][]string{
-						"C": {"a"},
-					},
-					Pattern: []Pattern{},
+			config: Config{
+				Sounds: map[string][]string{
+					"C": {"a"},
 				},
+				Pattern: []Pattern{},
 			},
 			want: []string(nil),
 		},
 		{
 			name: "syllables refers to undefined sounds",
-			args: args{
-				config: Config{
-					Sounds: map[string][]string{
-						"C": {"a"},
-					},
-					Pattern: []Pattern{
-						{
-							Label: "Syllable that isn't defined in Sounds",
-							Syllable: []string{
-								"U",
-							},
+			config: Config{
+				Sounds: map[string][]string{
+					"C": {"a"},
+				},
+				Pattern: []Pattern{
+					{
+						Label: "Syllable that isn't defined in Sounds",
+						Syllable: []string{
+							"U",
 						},
 					},
 				},
@@ -105,7 +96,7 @@ func Test_generateWords(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := generateWords(tt.args.config, FixedRandSource{}); !reflect.DeepEqual(got, tt.want) {
+			if got := generateWords(tt.config, FixedRandSource{}); !reflect.DeepEqual(got, tt.want) {
 				t.Logf("got: %#v, want: %#v", got, tt.want)
 				t.Errorf("generateWords() = %v, want %v", got, tt.want)
 			}

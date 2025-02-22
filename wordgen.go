@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"math/rand"
 )
 
@@ -30,14 +30,13 @@ func generateWords(config Config, randSource RandSource) []string {
 	var generatedWords []string
 
 	for _, pattern := range patterns {
-		fmt.Printf("Generating pattern: %s\n", pattern.Label)
+		log.Printf("Generating pattern: %s\n", pattern.Label)
 
 		var word string
 
 		for _, syllable := range pattern.Syllable {
 			if len(sounds[syllable]) == 0 {
-				fmt.Printf("'%s' is not defined in Sounds\n", syllable)
-				continue
+				log.Fatalf("'%s' is not defined in Sounds\n", syllable)
 			}
 
 			word += choiceSound(sounds[syllable], randSource)

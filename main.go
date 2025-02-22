@@ -1,20 +1,25 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"log"
 )
 
 func main() {
-	config, err := loadConfig("resources/config.json")
+	filePath := flag.String("f", "resources/config.json", "file path")
+	flag.Parse()
+
+	config, err := loadConfig(*filePath)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Println("INFO: Successfully loaded the config!")
-	fmt.Printf("INFO: %d sounds(s) are defined in the config.\n", len(config.Sounds))
-	fmt.Printf("INFO: %d pattern(s) are defined in the config.\n", len(config.Pattern))
+	log.Printf("Successfully loaded the config from '%s'!\n", *filePath)
+	log.Printf("%d sounds(s) are defined in the config.\n", len(config.Sounds))
+	log.Printf("%d pattern(s) are defined in the config.\n", len(config.Pattern))
 
 	words := generateWords(config, DefaultRandSource{})
 

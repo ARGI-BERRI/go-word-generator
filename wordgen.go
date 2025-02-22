@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"math/rand"
+	"os"
 )
 
 type RandSource interface {
@@ -36,7 +37,8 @@ func generateWords(config Config, randSource RandSource) []string {
 
 		for _, syllable := range pattern.Syllable {
 			if len(sounds[syllable]) == 0 {
-				log.Fatalf("'%s' is not defined in Sounds\n", syllable)
+				log.Printf("'%s' is not defined in Sounds\n", syllable)
+				os.Exit(1)
 			}
 
 			word += choiceSound(sounds[syllable], randSource)

@@ -1,6 +1,10 @@
 package main
 
 import (
+	"errors"
+	"log"
+	"os"
+	"os/exec"
 	"reflect"
 	"testing"
 )
@@ -76,23 +80,6 @@ func Test_generateWords(t *testing.T) {
 			},
 			want: []string(nil),
 		},
-		{
-			name: "syllables refers to undefined sounds",
-			config: Config{
-				Sounds: map[string][]string{
-					"C": {"a"},
-				},
-				Pattern: []Pattern{
-					{
-						Label: "Syllable that isn't defined in Sounds",
-						Syllable: []string{
-							"U",
-						},
-					},
-				},
-			},
-			want: []string(nil),
-		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -102,4 +89,34 @@ func Test_generateWords(t *testing.T) {
 			}
 		})
 	}
+}
+
+func Test_generateWords_Failure(t *testing.T) {
+	if os.Getenv("FLAG_BE_CRASHED") == "1" {
+		generateWords(Config{
+			Sounds: map[string][]string{
+				"C": {"a"},
+			},
+			Pattern: []Pattern{
+				{
+					Label: "Syllable that isn't defined in Sounds",
+					Syllable: []string{
+						"U",
+					},
+				},
+			},
+		}, FixedRandSource{})
+
+		return
+	}
+	cmd := exec.Command(os.Args[0], "-test.run=Test_generateWords_Failure")
+	cmd.Env = append(os.Environ(), "FLAG_BE_CRASHED=1")
+
+	err := cmd.Run()
+	var e *exec.ExitError
+	if errors.As(err, &e) && !e.Success() {
+		return
+	}
+
+	log.Fatalf(err.Error())
 }

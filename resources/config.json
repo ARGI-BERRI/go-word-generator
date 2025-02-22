@@ -127,6 +127,7 @@
   },
   "patterns": [
     {
+      "label": "C_START/V/C_INTER/$",
       "syllable": [
         "C_START",
         "V",
@@ -135,6 +136,7 @@
       ]
     },
     {
+      "label": "C1/V/C1/$",
       "syllable": [
         "C1",
         "V",
@@ -143,6 +145,7 @@
       ]
     },
     {
+      "label": "V/CC/$",
       "syllable": [
         "V",
         "CC",
@@ -150,7 +153,7 @@
       ]
     },
     {
-      "label": "濁音を含まない語彙",
+      "label": "C_NO_DIACRITICS/V/C_NO_DIACRITICS/$",
       "syllable": [
         "C_NO_DIACRITICS",
         "V",
